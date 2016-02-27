@@ -60,7 +60,6 @@ filterAndMapC p f = map f . filter p
 compose xs = foldr (.) id xs
 --  compose [map (+1), map (*1)]  [1..4] 
 
-
 unfold p h t x 
 	| p x = []
 	| otherwise = h x : unfold p h t (t x)
@@ -81,3 +80,9 @@ sumSquaresP x = sum . uncurry squaresP $ (x, x)
 
 cords m n = [(x,y) | x<- [0..n], y<- [0..m]]
 
+fac 0 = 1
+fac x = x * fac (x-1)
+
+times n x = [x|_<-[1..n]] 
+
+indexMatix xss  = [((ri,ci), v )  |  (ri,r)<- zip [1..] xss, (ci,v)  <- zip [1..] r ]
