@@ -1,8 +1,10 @@
 arabicToRoman n 
 	| n >= 1000 = "M" ++ arabicToRoman (n - 1000)
+	| n >= 900 = "CM" ++ arabicToRoman (n - 900)
 	| n >= 500 = "D" ++ arabicToRoman (n - 500)
 	| n >= 400 = "CD" ++ arabicToRoman (n - 400)
 	| n >= 100 = "C" ++ arabicToRoman (n - 100)
+	| n >= 90 = "XC" ++ arabicToRoman (n - 90)
 	| n >= 50 = "L" ++ arabicToRoman (n - 50)
 	| n >= 40 = "XL" ++ arabicToRoman (n - 40)
 	| n >= 10 = "X" ++ arabicToRoman (n - 10)
