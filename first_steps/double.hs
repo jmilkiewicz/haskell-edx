@@ -58,6 +58,31 @@ perfects n = [x| x<- [1..n] , sum (factors x) == x*2 ]
 
 -- perfects n = [x| x<- [1..n] , sum (init (factors x)) == x ]
 
- riffle xs ys =  concat [ x:[y] | (x,y)<- zip xs ys ]
+ -- riffle xs ys =  concat [ x:[y] | (x,y)<- zip xs ys ]
  -- lub
- riffle xs ys = concat [ [x,y] | (x,y)<- zip xs ys ]
+ -- riffle xs ys = concat [ [x,y] | (x,y)<- zip xs ys ]
+
+
+
+-- by index
+msplitAt 0 xs     = ([], xs)
+msplitAt _ []     = ([], [])
+msplitAt n (x:xs) = (x:xs', xs'')
+  where
+    (xs', xs'') = msplitAt (n - 1) xs
+
+-- by value
+
+splitByValue n = filter (\x-> length x >0) . (vSplit2 n [])   
+
+vSplit2 n f [] = [f]
+vSplit2 n f (x:xs) 
+	| n == x =  f : vSplit2 n [] xs
+	| otherwise = vSplit2 n (f ++ [x]) xs 
+
+
+
+
+-- mySplit 0 xs = ([],xs)
+-- mySplit _ [] = ([],[])
+-- mySplit n (x:xs) = (x: mySplit (n-1) xs)	
